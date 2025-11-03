@@ -47,7 +47,8 @@ function requestBook(bookId) {
 
 // how do we process the information after receiving it from the Promise?
 
-// then/catch
+//* then/catch
+
 // requestBook(2)
 // .then((response) => {
 //   console.log(response)
@@ -102,7 +103,7 @@ function requestBook(bookId) {
 
 
 
-// Promise.all & Promise.allSettled
+//* Promise.all & Promise.allSettled
 
 // Promise.all([
 //   requestBook(1),
@@ -117,18 +118,46 @@ function requestBook(bookId) {
 // })
 
 
-Promise.allSettled([
-  requestBook(1),
-  requestBook(10),
-  requestBook(3)
-])
-.then((responseArr) => {
-  console.log(responseArr)
-})
-.catch((error) => {
-  console.log(error)
-})
+// Promise.allSettled([
+//   requestBook(1),
+//   requestBook(10),
+//   requestBook(3)
+// ])
+// .then((responseArr) => {
+//   console.log(responseArr)
+// })
+// .catch((error) => {
+//   console.log(error)
+// })
 
 
 
-// async/await
+//* async/await & try/catch
+
+async function resolvePromise() {
+  // a special type of function that will resolves asynchronicity in a smooth way
+
+  try {
+
+    const response1 = await requestBook(1)
+    // await will wait for the promise to be resolved, and then give back the response into the variable
+    console.log(response1.title)
+
+    const response2 = await requestBook(2)
+    console.log(response2.title)
+    const response3 = await requestBook(3)
+    console.log(response3.title)
+
+    //* with promise.all
+    // const allResponse = await Promise.all([requestBook(1), requestBook(2), requestBook(3)])
+    // console.log(allResponse)
+
+
+  } catch(error) {
+    console.log(error)
+  }
+
+
+}
+
+resolvePromise()
